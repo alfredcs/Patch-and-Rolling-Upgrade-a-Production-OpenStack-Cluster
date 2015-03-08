@@ -1,0 +1,31 @@
+The bug description:
+=====================
+With the latest build-39- ubuntu havana- RI refe set as none. issue is due to Service interface type not set on left and right interface.
+
+Root Cause:
+==========
+Missing left interface
+
+Components Fixed:
+=================
+Add left interface in service instance based on the template index 
+
+Files Fixed:
+===========
+
+Steps to apply fix on existing 1.05 build 211:
+==============================================
+
+1-> Copy the file to /usr/lib/python2.6/site-packages/svc_monitor on the Contrail-Config nodes 
+
+2-> service supervisor-config restart
+ 
+
+Bug Verification:
+=================
+Left interface added
+
+Action
+=================
+__source__ =  patches/instance_manager.py
+__destination__ =   /usr/lib/python2.6/site-packages/svc_monitor/instance_manager.py
