@@ -1,0 +1,29 @@
+The bug description:
+=====================
+Install L7 health check for Discovery service
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix on existing 1.05 build 211:
+==============================================
+
+1-> Copy the file to /usr/localbin/check_discover.py on the Contrail-Config nodes 
+
+2-> service xinetd restart
+ 
+
+Bug Verification:
+=================
+
+Action
+=================
+__source__ =  patches/check_discovery.py
+__destination__ =  /usr/local/bin/check_discovery.py
+__execution__ = contrail/patches/install_check_X.sh check_discovery

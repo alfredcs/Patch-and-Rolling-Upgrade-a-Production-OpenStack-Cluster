@@ -1,0 +1,26 @@
+The bug description:
+=====================
+To lock up rabbitmq by not using default username and password
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix 
+==============================================
+
+
+Bug Verification:
+=================
+
+
+Action
+=================
+__source__ =  
+__destination__ = 
+__execution__ = ./compute/patches/upgrade_contrail.sh contrail_install_repo121.77 havana_install_repo110

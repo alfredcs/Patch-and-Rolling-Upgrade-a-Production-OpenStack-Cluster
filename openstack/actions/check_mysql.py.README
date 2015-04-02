@@ -1,0 +1,26 @@
+The bug description:
+=====================
+Chekc L7 MySql health status using check_mysql.py
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix 
+==============================================
+
+
+Bug Verification:
+=================
+
+
+Action
+=================
+__source__ = patches/check_mysql.py 
+__destination__ = /usr/local/bin/check_mysql.py
+__execution__ = openstack/patches/install_check_X.sh check_mysql

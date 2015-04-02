@@ -1,0 +1,29 @@
+The bug description:
+=====================
+To support SSL for Contrail APIs
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix on existing 1.05 build 211:
+==============================================
+
+1-> Copy the file to /usr/lib/python2.6/site-packages/vnc_api/vnc_api.py on the Contrail-Config nodes 
+
+2-> service supervisor-config restart
+ 
+
+Bug Verification:
+=================
+Left interface added
+
+Action
+=================
+__source__ =  patches/vnc_api.py
+__destination__ =  /usr/lib/python2.6/site-packages/vnc_api/vnc_api.py

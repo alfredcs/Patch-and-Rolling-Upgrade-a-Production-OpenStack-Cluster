@@ -1,0 +1,34 @@
+The bug description:
+=====================
+To request sqlarchemy to retry in case of deadlock during large concurrent requests
+
+Root Cause:
+==========
+Add the _retry_on_deadlock decorator to the service_update() method of
+nova's sqlalchemy API. This decorator is scattered throughout the
+sqlalchemy API for other methods that may encounter this error. The
+referenced bug report shows a trace from where it occurred on this
+method.
+
+Components Fixed:
+=================
+api.py
+
+Files Fixed:
+===========
+/usr/lib/python2.6/site-packages/nova/db/sqlalchemy/api.py
+
+Steps to apply fix 
+==============================================
+patch-utils.sh -i
+
+
+Bug Verification:
+=================
+Nova's api.log should show Retrying.... when a deadlock is detected. OpenStack job should continoue and complete.
+
+Action
+=================
+__source__ = patches/api.py 
+__destination__ = /usr/lib/python2.6/site-packages/nova/db/sqlalchemy/api.py
+__execution__ = 

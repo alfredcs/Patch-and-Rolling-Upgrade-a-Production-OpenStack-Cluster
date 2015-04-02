@@ -1,0 +1,29 @@
+The bug description:
+=====================
+Install L7 health check for Contrail Collector
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix on existing 1.21 build 73:
+==============================================
+
+1-> Copy the file to /usr/local/bin/check_collector.py on the Contrail-Config nodes 
+
+2-> service xinetd restart
+ 
+
+Bug Verification:
+=================
+
+Action
+=================
+__source__ =  patches/check_collector.py
+__destination__ =  /usr/local/bin/check_collector.py
+__execution__ = contrail/patches/install_check_X.sh check_collector

@@ -1,0 +1,25 @@
+The bug description:
+=====================
+Update check_rabbitmq.py to include non-default password
+
+Root Cause:
+==========
+
+Components Fixed:
+=================
+
+Files Fixed:
+===========
+
+Steps to apply fix 
+==============================================
+
+
+Bug Verification:
+=================
+
+
+Action
+=================
+__source__ = patches/check_rabbitmq.py 
+__destination__ = /usr/local/bin/check_rabbitmq.py

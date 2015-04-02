@@ -1,0 +1,30 @@
+The bug description:
+=====================
+To rotate haproxy log
+
+Root Cause:
+==========
+n/a
+
+Components Fixed:
+=================
+Logrotate configuration
+
+Files Fixed:
+===========
+/etc/logrotate.d/haproxy
+
+Steps to apply fix 
+==============================================
+./patch-utils.sh -i
+
+
+Bug Verification:
+=================
+Make sure log file /var/log/haproxy.log is rotating
+
+Action
+=================
+__source__ = patches/haproxy
+__destination__ = /etc/logrotate.d/haproxy
+__execution__ = 

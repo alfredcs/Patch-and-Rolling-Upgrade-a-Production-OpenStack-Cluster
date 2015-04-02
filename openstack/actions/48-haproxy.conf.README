@@ -1,0 +1,30 @@
+The bug description:
+=====================
+To enable haproxy logging
+
+Root Cause:
+==========
+n/a
+
+Components Fixed:
+=================
+Syslog configuration
+
+Files Fixed:
+===========
+/etc/rsyslog.d/48-haproxy.conf
+
+Steps to apply fix 
+==============================================
+./patch-utils.sh -i
+
+
+Bug Verification:
+=================
+Make sure log file /var/log/haproxy.log is created and logging
+
+Action
+=================
+__source__ = patches/48-haproxy.conf
+__destination__ = /etc/rsyslog.d/48-haproxy.conf
+__execution__ = 

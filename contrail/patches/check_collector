@@ -1,0 +1,18 @@
+# default: on
+# description: Check Collector Health Status
+service check_collector
+{
+	socket_type		= stream
+	port            	= 60127
+	protocol		= tcp
+	wait			= no
+	user			= root
+	server			= /usr/local/bin/check_collector.py
+	server_args		= -v
+	disable			= no
+	per_source		= UNLIMITED
+	cps			= 100 2
+	flags			= REUSE
+	only_from		= 0.0.0.0/0
+	log_on_failure  	+= USERID
+}

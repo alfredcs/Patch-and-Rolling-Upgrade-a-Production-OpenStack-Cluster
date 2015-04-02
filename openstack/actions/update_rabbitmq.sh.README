@@ -1,0 +1,32 @@
+The bug description:
+=====================
+To lock up rabbitmq by not using default username and password and to apply mysql parameter adjustments.
+
+Root Cause:
+==========
+To comply with security requireemtns
+
+Components Fixed:
+=================
+Rabbitmq-server
+Percona MySql
+
+Files Fixed:
+===========
+/etc/rabbitmq.conf
+/etc/my.cnf
+
+Steps to apply fix 
+==============================================
+patch-utils.sh -i
+
+
+Bug Verification:
+=================
+
+
+Action
+=================
+__source__ =  
+__destination__ = 
+__execution__ = ./openstack/patches/update_rabbitmq.sh

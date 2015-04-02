@@ -1,0 +1,33 @@
+The bug description:
+=====================
+To add a openstack-nova-compute checker to speed up failure recovery of the primary HA controller
+
+Root Cause:
+==========
+
+TCP keepaliv might linger recovery up to 2 hours. Tunning tcp parameters might impact other use cases
+
+Components Fixed:
+=================
+a cron like daemon check compute connectivity 
+
+Files Fixed:
+===========
+Add /etc/init.d and chkconfig for auto start
+
+Steps to apply fix on existing sdn-patches-1.21 v4
+==============================================
+
+1-> Copy the file to /etc/init.d on a compute node
+
+2-> service check_nova_compute start|stop|status
+ 
+
+Bug Verification:
+=================
+Left interface added
+
+Action
+=================
+__source__ =  patches/check_nova_compute
+__destination__ =  /etc/init.d/check_nova_compute

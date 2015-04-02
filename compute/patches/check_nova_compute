@@ -1,0 +1,100 @@
+#!/bin/sh
+#
+# check-openstack-nova-compute  OpenStack Nova Compute Checker
+#
+# chkconfig:   - 98 02
+# Short-Description: Check OpenStack Nova Compute Worker
+# Description: Check nova compute manages computing instances on host
+#               machines. Through the API, commands are dispatched
+#               to compute workers to ensure the nova compute is talking with
+#		Openstack controllers even during or after failure in HA enviornment.
+### END INIT INFO
+
+. /etc/rc.d/init.d/functions
+
+suffix=compute
+prog="/usr/local/bin/run_check_nova_${suffix}.py"
+pidfile="/var/run/nova/check_nova_${suffix}.pid"
+logfile="/var/log/nova/check_nova_${suffix}.log"
+
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+lockfile=/var/lock/subsys/check_nova_${suffix}.py
+
+start() {
+    [ -x $exec ] || exit 5
+    [ `id | cut -d\( -f1 | cut -d= -f2` -ne 0 ] && exit 4
+    echo -n $"Starting $prog: "
+    #daemon $prog & > /dev/null
+    $prog & > /dev/null
+    retval=$?
+    echo
+    if [ $retval -eq 0 ]; then
+	touch $lockfile
+        ps -ef | grep $prog | grep -v grep |awk '{print $2}' > $pidfile
+    fi
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc -p $pidfile $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && { rm -f $lockfile; rm -f $pidfile; }
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    restart
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    status -p $pidfile $prog
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?
